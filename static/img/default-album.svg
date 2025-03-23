@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" rx="20" fill="#2A2A2A"/>
+  <circle cx="150" cy="150" r="100" fill="#1D1D1D"/>
+  <circle cx="150" cy="150" r="35" fill="#363636"/>
+  <circle cx="150" cy="150" r="15" fill="#1DB954"/>
+  <circle cx="150" cy="150" r="8" fill="#000"/>
+  <g fill="#1DB954" opacity="0.2">
+    <rect x="45" y="45" width="10" height="10" rx="2"/>
+    <rect x="65" y="45" width="10" height="10" rx="2"/>
+    <rect x="85" y="45" width="10" height="10" rx="2"/>
+    <rect x="105" y="45" width="10" height="10" rx="2"/>
+    <rect x="125" y="45" width="10" height="10" rx="2"/>
+    <rect x="145" y="45" width="10" height="10" rx="2"/>
+    <rect x="165" y="45" width="10" height="10" rx="2"/>
+    <rect x="185" y="45" width="10" height="10" rx="2"/>
+    <rect x="205" y="45" width="10" height="10" rx="2"/>
+    <rect x="225" y="45" width="10" height="10" rx="2"/>
+    <rect x="245" y="45" width="10" height="10" rx="2"/>
+    <rect x="45" y="245" width="10" height="10" rx="2"/>
+    <rect x="65" y="245" width="10" height="10" rx="2"/>
+    <rect x="85" y="245" width="10" height="10" rx="2"/>
+    <rect x="105" y="245" width="10" height="10" rx="2"/>
+    <rect x="125" y="245" width="10" height="10" rx="2"/>
+    <rect x="145" y="245" width="10" height="10" rx="2"/>
+    <rect x="165" y="245" width="10" height="10" rx="2"/>
+    <rect x="185" y="245" width="10" height="10" rx="2"/>
+    <rect x="205" y="245" width="10" height="10" rx="2"/>
+    <rect x="225" y="245" width="10" height="10" rx="2"/>
+    <rect x="245" y="245" width="10" height="10" rx="2"/>
+    <rect x="45" y="65" width="10" height="10" rx="2"/>
+    <rect x="45" y="85" width="10" height="10" rx="2"/>
+    <rect x="45" y="105" width="10" height="10" rx="2"/>
+    <rect x="45" y="125" width="10" height="10" rx="2"/>
+    <rect x="45" y="145" width="10" height="10" rx="2"/>
+    <rect x="45" y="165" width="10" height="10" rx="2"/>
+    <rect x="45" y="185" width="10" height="10" rx="2"/>
+    <rect x="45" y="205" width="10" height="10" rx="2"/>
+    <rect x="45" y="225" width="10" height="10" rx="2"/>
+    <rect x="245" y="65" width="10" height="10" rx="2"/>
+    <rect x="245" y="85" width="10" height="10" rx="2"/>
+    <rect x="245" y="105" width="10" height="10" rx="2"/>
+    <rect x="245" y="125" width="10" height="10" rx="2"/>
+    <rect x="245" y="145" width="10" height="10" rx="2"/>
+    <rect x="245" y="165" width="10" height="10" rx="2"/>
+    <rect x="245" y="185" width="10" height="10" rx="2"/>
+    <rect x="245" y="205" width="10" height="10" rx="2"/>
+    <rect x="245" y="225" width="10" height="10" rx="2"/>
+  </g>
+  <text x="150" y="215" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1DB954" text-anchor="middle">Music</text>
+  <path d="M155 130V100H160V130H155ZM140 130V100H145V130H140Z" fill="#1DB954"/>
+</svg>

@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="app-container">
+    {% if current_user.is_authenticated %}
+        <div class="download-container fade-in">
+            <div class="download-header">
+                <h2 class="typing-text">Download Your Music</h2>
+                <p>Search for your favorite music or enter a Spotify URL to download songs, albums, or playlists.</p>
+            </div>
+            
+            <!-- Mode Toggle Switch -->
+            <div class="mode-toggle-container text-center mb-4 fade-in delay-100">
+                <div class="btn-group" role="group" aria-label="Download Mode">
+                    <button type="button" class="btn btn-outline-spotify active" id="urlModeBtn">
+                        <i class="fas fa-link me-2"></i>URL Mode
+                    </button>
+                    <button type="button" class="btn btn-outline-spotify" id="searchModeBtn">
+                        <i class="fas fa-search me-2"></i>Search Mode
+                    </button>
+                </div>
+            </div>
+            
+            <!-- URL Mode Form -->
+            <form id="urlDownloadForm" onsubmit="return false;" class="fade-in delay-100">
+                <div class="url-input-container">
+                    <i class="fas fa-music url-input-icon"></i>
+                    <input type="text" 
+                           id="urlInput" 
+                           class="url-input url-input-with-icon" 
+                           placeholder="Paste Spotify URL (song, album or playlist)"
+                           required>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-spotify btn-lg">
+                        <i class="fas fa-download me-2"></i>Download Music
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Search Mode Form (hidden by default) -->
+            <form id="searchForm" onsubmit="return false;" class="fade-in delay-100" style="display: none;">
+                <div class="url-input-container">
+                    <i class="fas fa-search url-input-icon"></i>
+                    <input type="text" 
+                           id="searchInput" 
+                           class="url-input url-input-with-icon" 
+                           placeholder="Search for artists, songs, or albums"
+                           required>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-spotify btn-lg">
+                        <i class="fas fa-search me-2"></i>Search Music
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Search Results Container -->
+            <div class="search-results" id="searchResults" style="display: none;">
+                <h3 class="mt-4 mb-3">Search Results</h3>
+                <div class="search-results-container" id="searchResultsList">
+                    <!-- Search results will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Selected Track Container -->
+            <div class="selected-track" id="selectedTrack" style="display: none;">
+                <h3 class="mt-4 mb-3">Selected Track</h3>
+                <div class="selected-track-container">
+                    <div class="track-info" id="selectedTrackInfo">
+                        <!-- Selected track info will be loaded here -->
+                    </div>
+                    <div class="text-center mt-3">
+                        <button id="downloadSelectedBtn" class="btn btn-spotify">
+                            <i class="fas fa-download me-2"></i>Download Track
+                        </button>
+                        <button id="backToSearchBtn" class="btn btn-outline-light">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar (shown during download) -->
+            <div class="progress-container" id="progressContainer">
+                <div class="progress">
+                    <div id="progressBar" 
+                         class="progress-bar" 
+                         role="progressbar" 
+                         style="width: 0%" 
+                         aria-valuenow="0" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100"></div>
+                </div>
+                <div class="progress-text" id="progressText" data-percentage="0%">0%</div>
+            </div>
+
+            <!-- Output Container -->
+            <div class="output-container" id="outputContainer">
+                <pre id="outputText" class="output-text"></pre>
+            </div>
+
+            <!-- Track List for Multiple Tracks -->
+            <div class="track-list" id="trackList">
+                <!-- Tracks will be loaded here -->
+            </div>
+
+            <!-- Download Actions -->
+            <div class="download-actions">
+                <button id="cancelBtn" class="btn btn-cancel d-none">
+                    <i class="fas fa-times me-2"></i>Cancel
+                </button>
+                <!-- Only show View Tracks button for playlists -->
+                <button id="trackListBtn" class="btn btn-secondary d-none">
+                    <i class="fas fa-list me-2"></i>View Tracks
+                </button>
+            </div>
+
+            <!-- Download Complete Message -->
+            <div class="download-complete" id="downloadComplete">
+                <div class="download-complete-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Download Complete!</h3>
+                <p>Your music has been successfully downloaded.</p>
+                <a href="#" id="downloadZipLink" class="btn btn-spotify">
+                    <i class="fas fa-file-download me-2"></i>Download Files
+                </a>
+            </div>
+        </div>
+
+        <div class="recent-downloads my-5 fade-in delay-200">
+            <h3 class="text-center mb-4 text-gradient">Your Recent Downloads</h3>
+            <div class="row cards-container">
+                {% if current_user.downloads and current_user.downloads|length > 0 %}
+                    {% for download in current_user.downloads[:3] %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ download.track_name }}</h5>
+                                <p class="card-text text-muted">{{ download.download_date }}</p>
+                                <a href="{{ download.spotify_url }}" target="_blank" class="btn btn-sm btn-outline-spotify">
+                                    <i class="fab fa-spotify me-1"></i> View on Spotify
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center">
+                        <p class="text-muted">You haven't downloaded any tracks yet.</p>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="text-center mt-4 fade-in delay-300">
+                <a href="{{ url_for('downloads') }}" class="btn btn-outline-spotify">
+                    <i class="fas fa-history me-2"></i>View All Downloads
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="hero-section">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content fade-in">
+                        <h1 class="display-4 fw-bold mb-4 text-gradient">Download Music from Spotify</h1>
+                        <p class="lead mb-4 fade-in delay-200">SpoDown lets you easily download your favorite songs, albums, and playlists from Spotify. Build your personal music library for offline listening.</p>
+                        <div class="hero-buttons fade-in delay-300">
+                            <a href="{{ url_for('auth.signup') }}" class="btn btn-spotify btn-lg me-3">
+                                <i class="fas fa-user-plus me-2"></i>Get Started
+                            </a>
+                            <a href="{{ url_for('auth.signin') }}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="hero-image text-center fade-in delay-400">
+                        <img src="{{ url_for('static', filename='img/hero-image.svg') }}" alt="SpoDown Music Downloader" class="img-fluid parallax" data-speed="0.03">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section my-5 py-5">
+            <div class="text-center mb-5 fade-in">
+                <h2 class="display-5 fw-bold text-gradient">Powerful Features</h2>
+                <p class="lead text-muted">Everything you need to build your music collection</p>
+            </div>
+            
+            <div class="row g-4 cards-container">
+                <div class="col-md-4 fade-in delay-100">
+                    <div class="feature-card card">
+                        <div class="feature-icon float">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Download Tracks</h3>
+                        <p>Download your favorite songs from Spotify with just one click</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in delay-200">
+                    <div class="feature-card card">
+                        <div class="feature-icon float">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <h3>Playlist Support</h3>
+                        <p>Download entire playlists and keep your music collection organized</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in delay-300">
+                    <div class="feature-card card">
+                        <div class="feature-icon float">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>Track History</h3>
+                        <p>Keep track of all your downloads in one convenient place</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in delay-200">
+                    <div class="feature-card card">
+                        <div class="feature-icon float">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Community</h3>
+                        <p>Connect with other music lovers and share your favorite tracks</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in delay-300">
+                    <div class="feature-card card">
+                        <div class="feature-icon float">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Global Chat</h3>
+                        <p>Discuss music and exchange recommendations in our global chat</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in delay-400">
+                    <div class="feature-card card">
+                        <div class="feature-icon float">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>Custom Profiles</h3>
+                        <p>Customize your profile with images and bio to express yourself</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section text-center my-5 py-5 fade-in">
+            <h2 class="display-5 fw-bold mb-4 text-gradient">Start Building Your Music Collection Today</h2>
+            <p class="lead text-muted mb-4 fade-in delay-100">Create an account to download and manage your favorite music tracks.</p>
+            <div class="cta-buttons fade-in delay-200">
+                <a href="{{ url_for('auth.signin') }}" class="btn btn-spotify btn-lg me-3">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </a>
+                <a href="{{ url_for('auth.signup') }}" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-user-plus me-2"></i>Sign Up
+                </a>
+            </div>
+            <div class="benefits mt-5 fade-in delay-300">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle text-success float"></i>
+                    <span>Free to use</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle text-success float"></i>
+                    <span>No ads or limitations</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle text-success float"></i>
+                    <span>Track your download history</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle text-success float"></i>
+                    <span>Connect with music enthusiasts</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle text-success float"></i>
+                    <span>Create your custom profile</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

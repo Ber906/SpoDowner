@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container about-page fade-in">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="content-card">
+                <h1 class="text-gradient mb-4">Contact Us</h1>
+                <p class="lead fade-in delay-100">We'd love to hear from you! Get in touch with the SpoDown team using any of the methods below.</p>
+                
+                <div class="contact-grid fade-in delay-200">
+                    <div class="contact-card">
+                        <div class="contact-icon float">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>For general inquiries, support requests, or feedback:</p>
+                        <a href="mailto:support@spodown.com" class="contact-link">support@spodown.com</a>
+                    </div>
+                    
+                    <div class="contact-card fade-in delay-300">
+                        <div class="contact-icon float">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p>Chat with our support team in real-time during business hours:</p>
+                        <button class="btn btn-outline-spotify">Start Chat</button>
+                    </div>
+                    
+                    <div class="contact-card fade-in delay-400">
+                        <div class="contact-icon float">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3>Report a Bug</h3>
+                        <p>Found an issue with our service? Let us know:</p>
+                        <a href="mailto:bugs@spodown.com" class="contact-link">bugs@spodown.com</a>
+                    </div>
+                    
+                    <div class="contact-card fade-in delay-500">
+                        <div class="contact-icon float">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Feature Requests</h3>
+                        <p>Have an idea to improve SpoDown? We're all ears:</p>
+                        <a href="mailto:ideas@spodown.com" class="contact-link">ideas@spodown.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-section fade-in delay-300">
+                    <h2 class="mb-4">Send Us a Message</h2>
+                    
+                    <form id="contactForm" class="contact-form fade-in delay-400">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="consent">
+                            <label class="form-check-label" for="consent">I agree to the processing of my personal data according to the <a href="{{ url_for('about.privacy') }}">Privacy Policy</a>.</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-spotify">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="social-section fade-in delay-500">
+                    <h2 class="mb-4">Connect With Us</h2>
+                    
+                    <div class="social-cards">
+                        <a href="#" class="social-card twitter fade-in delay-550">
+                            <i class="fab fa-twitter"></i>
+                            <div class="social-info">
+                                <h4>Twitter</h4>
+                                <p>@SpoDown</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="social-card facebook fade-in delay-600">
+                            <i class="fab fa-facebook"></i>
+                            <div class="social-info">
+                                <h4>Facebook</h4>
+                                <p>@SpoDownOfficial</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="social-card instagram fade-in delay-650">
+                            <i class="fab fa-instagram"></i>
+                            <div class="social-info">
+                                <h4>Instagram</h4>
+                                <p>@SpoDown</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="social-card discord fade-in delay-700">
+                            <i class="fab fa-discord"></i>
+                            <div class="social-info">
+                                <h4>Discord</h4>
+                                <p>Join our community</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="faq-section fade-in delay-600">
+                    <h2 class="mb-4">Frequently Asked Questions</h2>
+                    
+                    <div class="accordion" id="contactFAQ">
+                        <div class="accordion-item fade-in delay-650">
+                            <h3 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                                    What are your response times?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    We typically respond to all inquiries within 24 hours during business days. For urgent matters, please use our live chat feature for faster assistance.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item fade-in delay-700">
+                            <h3 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                    How can I report a download issue?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    If you're experiencing issues with downloads, please email support@spodown.com with the Spotify URL you're trying to download and any error messages you receive. This helps us diagnose and fix the problem quickly.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item fade-in delay-750">
+                            <h3 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                    Do you offer business partnerships?
+                                </button>
+                            </h3>
+                            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    Yes, we're open to business partnerships and collaborations. Please contact us at partnerships@spodown.com with details about your proposal, and our business development team will get back to you.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple form validation
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                const consent = document.getElementById('consent').checked;
+                
+                if (!name || !email || !subject || !message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please fill in all required fields.',
+                        icon: 'error',
+                        confirmButtonColor: '#1ed760'
+                    });
+                    return;
+                }
+                
+                if (!consent) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please agree to our Privacy Policy to submit the form.',
+                        icon: 'error',
+                        confirmButtonColor: '#1ed760'
+                    });
+                    return;
+                }
+                
+                // Simulate form submission
+                Swal.fire({
+                    title: 'Message Sent!',
+                    text: 'Thank you for contacting us. We will get back to you shortly.',
+                    icon: 'success',
+                    confirmButtonColor: '#1ed760'
+                });
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container about-page fade-in">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="content-card">
+                <h1 class="text-gradient mb-4">How SpoDown Works</h1>
+                
+                <div class="about-section fade-in delay-100">
+                    <h2>Simple Music Downloads in 3 Steps</h2>
+                    <p class="lead">SpoDown lets you download your favorite songs, albums, and playlists from Spotify with just a few clicks. Here's how it works:</p>
+                    
+                    <div class="process-steps">
+                        <div class="process-step fade-in delay-200">
+                            <div class="step-number float">1</div>
+                            <div class="step-content">
+                                <h3>Copy the Spotify URL</h3>
+                                <p>Find the song, album, or playlist you want to download on Spotify. Click the share button and copy the URL to your clipboard.</p>
+                                <div class="step-icon">
+                                    <i class="fas fa-link float"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step fade-in delay-300">
+                            <div class="step-number float">2</div>
+                            <div class="step-content">
+                                <h3>Paste the URL in SpoDown</h3>
+                                <p>Come back to SpoDown and paste the URL into the download box. Click the "Download Music" button to start the process.</p>
+                                <div class="step-icon">
+                                    <i class="fas fa-paste float"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step fade-in delay-400">
+                            <div class="step-number float">3</div>
+                            <div class="step-content">
+                                <h3>Download Your Music</h3>
+                                <p>SpoDown will process your request and provide you with downloadable audio files. It's that simple!</p>
+                                <div class="step-icon">
+                                    <i class="fas fa-download float"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section fade-in delay-200">
+                    <h2>Behind the Technology</h2>
+                    <p>SpoDown uses advanced algorithms to find the highest quality audio versions of your favorite tracks. Our technology ensures:</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item fade-in delay-300">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>High-quality audio downloads (320kbps)</span>
+                        </div>
+                        <div class="feature-item fade-in delay-350">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Complete playlist support for batch downloading</span>
+                        </div>
+                        <div class="feature-item fade-in delay-400">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Proper metadata including artist, album, and cover art</span>
+                        </div>
+                        <div class="feature-item fade-in delay-450">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Fast processing with our optimized backend</span>
+                        </div>
+                        <div class="feature-item fade-in delay-500">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Regular updates to ensure compatibility with Spotify</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section fade-in delay-300">
+                    <h2>Your Music Library</h2>
+                    <p>With SpoDown, you can:</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card fade-in delay-350">
+                            <i class="fas fa-headphones"></i>
+                            <h4>Listen Offline</h4>
+                            <p>Download your music for offline listening without needing an internet connection</p>
+                        </div>
+                        
+                        <div class="benefit-card fade-in delay-400">
+                            <i class="fas fa-database"></i>
+                            <h4>Build Your Collection</h4>
+                            <p>Create a permanent library of your favorite music that you own</p>
+                        </div>
+                        
+                        <div class="benefit-card fade-in delay-450">
+                            <i class="fas fa-folder-open"></i>
+                            <h4>Organize Easily</h4>
+                            <p>Keep track of your downloads in our organized history section</p>
+                        </div>
+                        
+                        <div class="benefit-card fade-in delay-500">
+                            <i class="fas fa-share-alt"></i>
+                            <h4>Share Music</h4>
+                            <p>Connect with other music enthusiasts in our community</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-section text-center my-5 fade-in delay-400">
+                    <h2>Ready to Download Your Music?</h2>
+                    <p class="mb-4">Join thousands of users who are already building their music collections with SpoDown.</p>
+                    
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('auth.signup') }}" class="btn btn-spotify btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Get Started
+                        </a>
+                        <a href="{{ url_for('auth.signin') }}" class="btn btn-outline-spotify btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
